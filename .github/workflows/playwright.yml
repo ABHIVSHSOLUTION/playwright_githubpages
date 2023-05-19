@@ -139,4 +139,4 @@ jobs:
         if: always()
         with:
           files: |
-            test-results/junit-report.xml
+            html-report/index.html
