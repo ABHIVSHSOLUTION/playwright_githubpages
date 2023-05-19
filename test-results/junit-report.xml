@@ -1,28 +1,18 @@
-<testsuites id="" name="" tests="4" failures="1" skipped="0" errors="0" time="5.830430000001565">
-<testsuite name="userApi.spec.ts" timestamp="2023-05-17T07:58:30.508Z" hostname="chromium" tests="4" failures="1" skipped="0" time="3.298" errors="0">
-<testcase name="Sample testing of insurance user api › Get api" classname="userApi.spec.ts" time="0.039">
-<failure message="userApi.spec.ts:4:7 Get api" type="FAILURE">
-<![CDATA[  [chromium] › userApi.spec.ts:4:7 › Sample testing of insurance user api › Get api ────────────────
-
-    ReferenceError: page is not defined
-
-      3 | test.describe("Sample testing of insurance user api", () => {
-      4 |   test("Get api", async ({ baseURL, request }) => {
-    > 5 |     await page.goto("https://playwright.dev/docs/test-webserver");
-        |     ^
-      6 |   });
-      7 |
-      8 |   test("post request", async ({ baseURL, request, page }) => {
-
-        at /home/abhi/VSH/playwright-poc/tests/userApi.spec.ts:5:5
-]]>
-</failure>
+<testsuites id="" name="" tests="7" failures="0" skipped="0" errors="0" time="9.365673000000417">
+<testsuite name="e2e/user.spec.ts" timestamp="2023-05-19T07:04:45.851Z" hostname="chromium" tests="7" failures="0" skipped="0" time="8.088" errors="0">
+<testcase name="Sample testing of insurance user page › adding user to table" classname="e2e/user.spec.ts" time="1.436">
 </testcase>
-<testcase name="Sample testing of insurance user api › post request" classname="userApi.spec.ts" time="1.151">
+<testcase name="Sample testing of insurance user page › adding1 user to table" classname="e2e/user.spec.ts" time="1.106">
 </testcase>
-<testcase name="Sample testing of insurance user api › put request" classname="userApi.spec.ts" time="1.085">
+<testcase name="Sample testing of insurance user page › adding2 user to table" classname="e2e/user.spec.ts" time="0.897">
 </testcase>
-<testcase name="Sample testing of insurance user api › delete request" classname="userApi.spec.ts" time="1.023">
+<testcase name="Sample testing of insurance user page › edit user to the table" classname="e2e/user.spec.ts" time="1.344">
+</testcase>
+<testcase name="Sample testing of insurance user page › edi2t user to the table" classname="e2e/user.spec.ts" time="1.304">
+</testcase>
+<testcase name="Sample testing of insurance user page › edit3 user to the table" classname="e2e/user.spec.ts" time="0.961">
+</testcase>
+<testcase name="Sample testing of insurance user page › deleting user from table" classname="e2e/user.spec.ts" time="1.04">
 </testcase>
 </testsuite>
 </testsuites>
