@@ -84,6 +84,9 @@ jobs:
     timeout-minutes: 60
     permissions:
       contents: read
+      issues: read
+      checks: write
+      pull-requests: write
       pages: write
       id-token: write
     concurrency:
@@ -131,8 +134,9 @@ jobs:
           name: html-report
           path: html-report/
           retention-days: 3
-      - name: HTML Preview
-        id: html_preview
-        uses: pavi2410/html-preview-action@v2
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
         with:
-          html_file: "html-report/index.html"
+          files: |
+            test-results/junit-report.xml
