@@ -84,14 +84,14 @@ jobs:
     timeout-minutes: 60
     permissions:
       contents: read
+      issues: read
+      checks: write
+      pull-requests: write
       pages: write
       id-token: write
     concurrency:
       group: "pages"
       cancel-in-progress: true
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -134,13 +134,9 @@ jobs:
           name: html-report
           path: html-report/
           retention-days: 3
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
         with:
-          # Upload entire repository
-          path: html-report/
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+          files: |
+            html-report/index.html
