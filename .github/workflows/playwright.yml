@@ -86,12 +86,6 @@ jobs:
       contents: read
       pages: write
       id-token: write
-    concurrency:
-      group: "pages"
-      cancel-in-progress: true
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -134,13 +128,10 @@ jobs:
           name: html-report
           path: html-report/
           retention-days: 3
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure() # run this step even if previous step failed
         with:
-          # Upload entire repository
-          path: html-report/
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+          name: Playwright Tests # Name of the check run which will be created
+          path: test-results/junit-*.xml # Path to test results
+          reporter: jest-junit
