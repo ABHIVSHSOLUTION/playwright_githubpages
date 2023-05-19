@@ -150,6 +150,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3.8.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          gh_pages: gh-pages
           publish_dir: ./results-history
 
       - name: Post the link to the report
