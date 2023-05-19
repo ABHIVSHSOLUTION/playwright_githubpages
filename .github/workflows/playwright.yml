@@ -152,6 +152,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           gh_pages: gh-pages
           publish_dir: ./results-history
+          keep_files: true
 
       - name: Post the link to the report
         if: always()
