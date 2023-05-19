@@ -128,8 +128,37 @@ jobs:
           name: html-report
           path: html-report/
           retention-days: 3
-      - name: GH Pages Push
-        uses: PavanMudigonda/html-reporter-github-pages/composite@v1.1
+      - name: Get Test Results history
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
         with:
-          test_results: test-results
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Create Playwright Test Results History
+        uses: PavanMudigonda/playwright-github-pages@v0.1
+        id: test-report
+        with:
+          playwright_results: html-report
+          gh_pages: gh-pages
+          playwright_history: playwright-history
           keep_reports: 20
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        env:
+          PUBLISH_BRANCH: gh-pages
+          personal_token: ${{ secrets.GH_PAT }}
+          PUBLISH_DIR: playwright-history
+
+      - name: Post the link to the report
+        if: always()
+        uses: Sibz/github-status-action@v1
+        with:
+          authToken: ${{secrets.GITHUB_TOKEN}}
+          context: "Test Results Link"
+          state: "success"
+          sha: ${{ github.sha }}
+          target_url: https://abhivshsolution.github.io/playwright_githubpages/${{ github.run_number }}
