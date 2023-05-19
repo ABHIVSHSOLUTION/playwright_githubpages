@@ -86,6 +86,12 @@ jobs:
       contents: read
       pages: write
       id-token: write
+    concurrency:
+      group: "pages"
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -144,21 +150,13 @@ jobs:
           gh_pages: gh-pages
           results_history: results-history
           keep_reports: 20
-
-      - name: Deploy report to Github Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v3.8.0
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./results-history
-          keep_files: true
-
-      - name: Post the link to the report
-        if: always()
-        uses: Sibz/github-status-action@v1
-        with:
-          authToken: ${{secrets.GITHUB_TOKEN}}
-          context: "Test Results Link"
-          state: "success"
-          sha: ${{ github.sha }}
-          target_url: https://abhivshsolution.github.io/playwright_githubpages/${{ github.run_number }}
+          # Upload entire repository
+          path: results-history/
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
