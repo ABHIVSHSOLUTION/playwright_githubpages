@@ -134,13 +134,8 @@ jobs:
           name: html-report
           path: html-report/
           retention-days: 3
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: HTML Preview
+        id: html_preview
+        uses: pavi2410/html-preview-action@v2
         with:
-          # Upload entire repository
-          path: html-report/
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+          html_file: "html-report/index.html"
