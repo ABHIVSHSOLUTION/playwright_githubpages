@@ -137,7 +137,7 @@ jobs:
           path: gh-pages
 
       - name: Create Playwright Test Results History
-        uses: PavanMudigonda/playwright-github-pages@v0.1
+        uses: PavanMudigonda/html-reporter-github-pages@v1.0
         id: test-report
         with:
           playwright_results: html-report
