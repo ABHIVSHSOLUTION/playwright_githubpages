@@ -140,9 +140,9 @@ jobs:
         uses: PavanMudigonda/html-reporter-github-pages@v1.0
         id: test-report
         with:
-          playwright_results: html-report/
+          test_results: html-report/
           gh_pages: gh-pages
-          playwright_history: ./results-history
+          results_history: results-history
           keep_reports: 20
 
       - name: Deploy report to Github Pages
