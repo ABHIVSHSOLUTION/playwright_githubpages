@@ -118,14 +118,6 @@ jobs:
 
       - name: Display structure of downloaded files
         run: ls -R
-      - name: Create Playwright Test Results History
-        uses: PavanMudigonda/html-reporter-github-pages@v1.0
-        id: test-report
-        with:
-          test_results: ./playwright-report/index.html
-          gh_pages: main
-          results_history: ./results-history/
-          keep_reports: 20
       - name: Remove Previous html-report directory if exists
         run: rm -rf playwright-report/html-report
 
@@ -141,7 +133,14 @@ jobs:
           name: html-report
           path: html-report/
           retention-days: 3
-
+      - name: Create Playwright Test Results History
+        uses: PavanMudigonda/html-reporter-github-pages@v1.0
+        id: test-report
+        with:
+          test_results: test-results
+          gh_pages: playwright-github-pages-history
+          results_history: ./results-history/
+          keep_reports: 20
       - name: Print results-history folder contents
         run: ls ./results-history
       - name: Setup Pages
