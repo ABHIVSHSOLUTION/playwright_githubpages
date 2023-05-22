@@ -146,7 +146,7 @@ jobs:
         with:
           test_results: test-results
           gh_pages: playwright-github-pages-history
-          results_history: ./results-history/
+          results_history: ./html-report
           keep_reports: 20
       - name: Print results-history folder contents
         run: ls ./results-history
