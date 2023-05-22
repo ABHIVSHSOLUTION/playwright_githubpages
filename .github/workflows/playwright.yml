@@ -122,7 +122,7 @@ jobs:
         uses: PavanMudigonda/html-reporter-github-pages@v1.0
         id: test-report
         with:
-          test_results: ./playwright-report/
+          test_results: ./playwright-report/index.html
           gh_pages: main
           results_history: ./results-history/
           keep_reports: 20
