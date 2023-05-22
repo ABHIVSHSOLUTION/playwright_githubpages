@@ -134,13 +134,21 @@ jobs:
           name: html-report
           path: html-report/
           retention-days: 3
+      - name: Create Playwright Test Results History
+        uses: PavanMudigonda/html-reporter-github-pages@v1.0
+        id: test-report
+        with:
+          test_results: ./html-report/
+          gh_pages: main
+          results_history: ./results-history/
+          keep_reports: 20
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: html-report/
-          keep_files: true
+          # Upload entire repository
+          path: ./results-history/
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
