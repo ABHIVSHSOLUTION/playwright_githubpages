@@ -140,7 +140,7 @@ jobs:
         continue-on-error: true
         with:
           ref: playwright-github-pages-history
-          path: html-report/
+          path: results-history/
 
       - name: Create Playwright Test Results History
         uses: PavanMudigonda/html-reporter-github-pages@v1.0
