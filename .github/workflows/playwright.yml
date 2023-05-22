@@ -142,6 +142,8 @@ jobs:
           gh_pages: main
           results_history: ./results-history/
           keep_reports: 20
+      - name: Print results-history folder contents
+        run: ls ./results-history
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
