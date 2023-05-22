@@ -144,9 +144,9 @@ jobs:
         uses: PavanMudigonda/html-reporter-github-pages@v1.0
         id: test-report
         with:
-          test_results: test-results
+          test_results: html-report
           gh_pages: playwright-github-pages-history
-          results_history: ./html-report
+          results_history: ./results-history/
           keep_reports: 20
       - name: Print results-history folder contents
         run: ls ./results-history
