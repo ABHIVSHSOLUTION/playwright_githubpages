@@ -140,14 +140,13 @@ jobs:
         continue-on-error: true
         with:
           ref: playwright-github-pages-history
-          path: gh-pages
+          path: html-report/
 
       - name: Create Playwright Test Results History
         uses: PavanMudigonda/html-reporter-github-pages@v1.0
         id: test-report
         with:
           test_results: html-report/
-          gh_pages: gh-pages
           results_history: results-history
           keep_reports: 20
       - name: Setup Pages
@@ -157,6 +156,7 @@ jobs:
         with:
           # Upload entire repository
           path: results-history/
+          keep_files: true
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
