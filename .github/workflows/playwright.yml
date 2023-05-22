@@ -134,14 +134,6 @@ jobs:
           name: html-report
           path: html-report/
           retention-days: 3
-      - name: Get Test Results history
-        uses: actions/checkout@v3
-        if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
-
       - name: Create Playwright Test Results History
         uses: PavanMudigonda/html-reporter-github-pages@v1.0
         id: test-report
