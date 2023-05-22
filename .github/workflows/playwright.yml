@@ -157,6 +157,11 @@ jobs:
           # Upload entire repository
           path: results-history/
           keep_files: true
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+      - name: Post the link to the report
+        if: always()
+        uses: Sibz/github-status-action@v1
+        with:
+          authToken: ${{secrets.GITHUB_TOKEN}}
+          context: "Test report"
+          state: "success"
+          target_url: abhivshsolution.github.io/playwright_githubpages//${{ github.run_number }}
