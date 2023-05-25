@@ -118,7 +118,6 @@ jobs:
 
       - name: Display structure of downloaded files
         run: ls -R
-
       - name: Remove Previous html-report directory if exists
         run: rm -rf playwright-report/html-report
 
@@ -134,13 +133,10 @@ jobs:
           name: html-report
           path: html-report/
           retention-days: 3
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: GH Pages Push
+        uses: PavanMudigonda/html-reporter-github-pages/composite@v1.1
         with:
-          # Upload entire repository
-          path: html-report/
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+          test_results: test_results
+          keep_reports: 20
+      - name: Print results-history folder contents
+        run: ls ./html-report
