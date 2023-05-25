@@ -136,6 +136,7 @@ jobs:
       - name: GH Pages Push
         uses: PavanMudigonda/html-reporter-github-pages/composite@v1.1
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           test_results: test_results
           keep_reports: 20
       - name: Print results-history folder contents
