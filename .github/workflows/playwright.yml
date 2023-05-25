@@ -138,6 +138,5 @@ jobs:
         with:
           test_results: test_results
           keep_reports: 20
-          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Print results-history folder contents
         run: ls ./html-report
